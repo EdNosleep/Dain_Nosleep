@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Coin Spinner v9-OPT-CORE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: url("background.png") center center / cover no-repeat fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    #coin-wrap {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      cursor: pointer;
+      filter: drop-shadow(0 12px 16px rgba(0,0,0,0.35));
+      transition: transform 0.15s ease-out;
+    }
+
+    .coin-face,
+    .coin-edge {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+      will-change: transform, opacity, filter;
+    }
+    .coin-edge {
+      opacity: 0;
+      transition: opacity 0.08s linear;
+      transform-origin: center;
+    }
+
+    /* === ИНСПЕКТОР (останется пока тут) === */
+    #inspector {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: -78vh;
+      height: 78vh;
+      background: rgba(12,12,14,0.92);
+      backdrop-filter: blur(6px);
+      color: #f1f1f1;
+      border-top: 1px solid rgba(255,255,255,0.03);
+      padding: 10px 14px 80px;
+      overflow-y: auto;
+      transition: bottom 0.3s ease;
+      z-index: 10;
+      font-size: .78rem;
+    }
+    #inspector.active { bottom: 0; }
+
+    #toggle {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 11;
+    }
+
+    .control { margin-bottom: 10px; }
+    .control label { display:block; margin-bottom:3px; }
+    .control input[type=range] { width:100%; }
+    .val {
+      font-size: .65rem;
+      opacity: .6;
+      margin-top: 2px;
+    }
+
+    @media (min-width: 900px) {
+      #inspector {
+        width: 320px;
+        right: 0;
+        left: auto;
+        bottom: 0;
+        height: 100vh;
+        transform: translateX(100%);
+      }
+      #inspector.active {
+        transform: translateX(0);
+      }
+    }
+    /* === /ИНСПЕКТОР === */
+  
+    /* === Убираем синий фокус при клике === */
+    #coin-wrap {
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+      user-select: none;
+    }
+    #coin-wrap:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Монета -->
+  <div id="coin-wrap">
+    <img id="coinFace" class="coin-face" src="coin_obverse.png" alt="coin">
+    <img id="coinEdge" class="coin-edge" src="coin_edge.png" alt="edge">
+  </div>
+
+  <!-- === ИНСПЕКТОР (позже можно вынести) === -->
+  <button id="toggle">⚙️</button>
+  <div id="inspector">
+    <h3>Основное</h3>
+    <div class="control">
+      <label>Размер монетки (px)</label>
+      <input id="coinSize" type="range" min="100" max="500" value="220">
+      <div class="val" id="coinSizeVal">Текущее: 220</div>
+    </div>
+    <div class="control">
+      <label>Толщина ребра</label>
+      <input id="edgeWidth" type="range" min="0.01" max="0.4" value="0.14" step="0.01">
+      <div class="val" id="edgeWidthVal">Текущее: 0.14</div>
+    </div>
+    <div class="control">
+      <label>Базовая скорость вращения</label>
+      <input id="baseSpeed" type="range" min="5" max="200" value="30">
+      <div class="val" id="baseSpeedVal">Текущее: 30</div>
+    </div>
+
+    <h3>Прыжок и бросок</h3>
+    <div class="control">
+      <label>Высота прыжка (px)</label>
+      <input id="jumpHeight" type="range" min="10" max="400" value="120">
+      <div class="val" id="jumpHeightVal">Текущее: 120</div>
+    </div>
+    <div class="control">
+      <label>Глубина приземления (px)</label>
+      <input id="landingDepth" type="range" min="0" max="80" value="15">
+      <div class="val" id="landingDepthVal">Текущее: 15</div>
+    </div>
+    <div class="control">
+      <label>Длительность прыжка (сек)</label>
+      <input id="jumpDuration" type="range" min="0.1" max="2" value="0.4" step="0.05">
+      <div class="val" id="jumpDurationVal">Текущее: 0.4</div>
+    </div>
+    <div class="control">
+      <label>Длительность ускорения (сек)</label>
+      <input id="accelDuration" type="range" min="0.1" max="2" value="0.6" step="0.05">
+      <div class="val" id="accelDurationVal">Текущее: 0.6</div>
+    </div>
+    <div class="control">
+      <label>Длительность броска (сек)</label>
+      <input id="spinDuration" type="range" min="0.2" max="4" value="1.2" step="0.1">
+      <div class="val" id="spinDurationVal">Текущее: 1.2</div>
+    </div>
+    <div class="control">
+      <label>Скорость при ускорении</label>
+      <input id="boostSpeed" type="range" min="100" max="4000" value="1200" step="50">
+      <div class="val" id="boostSpeedVal">Текущее: 1200</div>
+    </div>
+    <div class="control">
+      <label>Длительность замедления (сек)</label>
+      <input id="slowDuration" type="range" min="0.1" max="3" value="1.2" step="0.1">
+      <div class="val" id="slowDurationVal">Текущее: 1.2</div>
+    </div>
+    <div class="control">
+      <label>Длительность паузы (сек)</label>
+      <input id="pauseDuration" type="range" min="0" max="3" value="0.8" step="0.1">
+      <div class="val" id="pauseDurationVal">Текущее: 0.8</div>
+    </div>
+
+    <h3>Результат</h3>
+    <div class="control">
+      <label>Шанс выпадения орла (0–1)</label>
+      <input id="headsChance" type="range" min="0" max="1" value="0.5" step="0.01">
+      <div class="val" id="headsChanceVal">Текущее: 0.5</div>
+    </div>
+
+    <h3>Освещение</h3>
+    <div class="control">
+      <label>Интенсивность подсветки (0–1)</label>
+      <input id="lightIntensity" type="range" min="0" max="1" value="0.35" step="0.01">
+      <div class="val" id="lightIntensityVal">Текущее: 0.35</div>
+    </div>
+    <div class="control">
+      <label>Цвет R (0–255)</label>
+      <input id="lightR" type="range" min="0" max="255" value="255">
+      <div class="val" id="lightRVal">Текущее: 255</div>
+    </div>
+    <div class="control">
+      <label>Цвет G (0–255)</label>
+      <input id="lightG" type="range" min="0" max="255" value="255">
+      <div class="val" id="lightGVal">Текущее: 255</div>
+    </div>
+    <div class="control">
+      <label>Цвет B (0–255)</label>
+      <input id="lightB" type="range" min="0" max="255" value="255">
+      <div class="val" id="lightBVal">Текущее: 255</div>
+    </div>
+  </div>
+  <!-- === /ИНСПЕКТОР === -->
+
+  <script>
+    // ======= КОНСТАНТЫ =======
+    const radSpeed = Math.PI / 180;
+    const twoPI = Math.PI * 2;
+
+    // ======= DOM =======
+    const coinWrap = document.getElementById("coin-wrap");
+    const faceEl   = document.getElementById("coinFace");
+    const edgeEl   = document.getElementById("coinEdge");
+
+    // ======= СПРАЙТЫ =======
+    const IMG_OBVERSE = "coin_obverse.png";
+    const IMG_REVERSE = "coin_reverse.png";
+    const IMG_EDGE    = "coin_edge.png";
+    [IMG_OBVERSE, IMG_REVERSE, IMG_EDGE].forEach(src => { const im = new Image(); im.src = src; });
+
+    // ======= ПАРАМЕТРЫ (всё в одном объекте) =======
+    const params = {
+      coinSize: 170,
+      edgeWidth: 0.10,
+      baseSpeed: 75,
+
+      jumpHeight: 62,
+      landingDepth: 50,
+      jumpDuration: 0.2,
+
+      accelDuration: 0.2,
+      spinDuration: 1.2,
+      boostSpeed: 1600,
+
+      slowDuration: 2.4,
+      pauseDuration: 0.5,
+      headsChance: 0.5,
+
+      lightIntensity: 0.35,
+      lightR: 255,
+      lightG: 255,
+      lightB: 255,
+    };
+
+    // ======= СОСТОЯНИЕ =======
+    let angle = 0;
+    let lastTime = performance.now();
+    let currentFace = IMG_OBVERSE;
+    let spinSpeed = params.baseSpeed;
+    let activeAnim = null;
+
+    // кэш освещения
+    let prevFaceFilter = "";
+    let prevEdgeFilter = "";
+
+    // применяем стартовый размер
+    coinWrap.style.width  = params.coinSize + "px";
+    coinWrap.style.height = params.coinSize + "px";
+
+    // ======= ИНСПЕКТОР (авто-bind) =======
+    const inspector = document.getElementById("inspector");
+    document.getElementById("toggle").onclick = () => inspector.classList.toggle("active");
+
+    function setVal(id, v) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = "Текущее: " + v;
+    }
+
+    function bind(id, handler) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener("input", e => {
+        const v = e.target.type === "range" ? +e.target.value : e.target.value;
+        handler(v);
+      });
+    }
+
+    // авто-биндинг всех ключей params + обновление подписи
+    Object.keys(params).forEach(key => {
+      bind(key, v => {
+        params[key] = v;
+        const valId = key + "Val";
+        setVal(valId, v);
+
+        // спец-обновления
+        if (key === "coinSize") {
+          coinWrap.style.width  = v + "px";
+          coinWrap.style.height = v + "px";
+        }
+        if (key === "baseSpeed" && !activeAnim) {
+          spinSpeed = v;
+        }
+      });
+    });
+
+    // ======= ГЛАВНЫЙ ЦИКЛ =======
+    function loop(now) {
+      const dt = (now - lastTime) / 1000;
+      lastTime = now;
+
+      // вращение
+      angle = (angle + spinSpeed * radSpeed * dt) % twoPI;
+
+      const c = Math.cos(angle);   // -1..1
+      const absC = Math.abs(c);
+      const minScale = 0.04;
+      const scaleX = Math.max(absC, minScale);
+
+      // динамическое освещение
+      const faceFactor = Math.abs(c); // 0..1
+      const faceBrightness = 1 + params.lightIntensity * faceFactor;
+      const lightAlpha = params.lightIntensity * faceFactor * 0.7;
+
+      // обновляем лицо одной строкой
+      const faceFilter = `brightness(${faceBrightness}) drop-shadow(0 0 ${6 + 10*faceFactor}px rgba(${params.lightR},${params.lightG},${params.lightB},${lightAlpha}))`;
+      faceEl.style.cssText = `
+        position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;will-change:transform,opacity,filter;
+        transform:scaleX(${scaleX});
+        filter:${faceFilter};
+      `;
+
+      // ребро
+      if (absC < params.edgeWidth) {
+        const t = 1 - (absC / params.edgeWidth); // 0..1
+        const edgeBrightness = 1 + params.lightIntensity * t;
+        const edgeAlpha = params.lightIntensity * t * 0.7;
+        const edgeFilter = `brightness(${edgeBrightness}) drop-shadow(0 0 ${4 + 8*t}px rgba(${params.lightR},${params.lightG},${params.lightB},${edgeAlpha}))`;
+
+        // 60% ширины
+        edgeEl.style.opacity = t;
+        edgeEl.style.transform = `scaleX(0.6)`;
+        if (edgeFilter !== prevEdgeFilter) {
+          edgeEl.style.filter = edgeFilter;
+          prevEdgeFilter = edgeFilter;
+        }
+      } else {
+        edgeEl.style.opacity = 0;
+      }
+
+      // смена лицевой / обратной только в безопасной зоне
+      const needObverse = c >= 0;
+      const neededSrc = needObverse ? IMG_OBVERSE : IMG_REVERSE;
+      if (currentFace !== neededSrc && absC > params.edgeWidth + 0.01) {
+        faceEl.src = neededSrc;
+        currentFace = neededSrc;
+      }
+
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+
+    // ======= ЛОГИКА КЛИКА =======
+    coinWrap.addEventListener("click", () => {
+      if (activeAnim) activeAnim.cancelled = true;
+      startSpinSequence();
+    });
+
+    async function startSpinSequence() {
+      const token = { cancelled: false };
+      activeAnim = token;
+
+      // сброс
+      coinWrap.style.transform = "translateY(0)";
+      spinSpeed = params.baseSpeed;
+
+      // ускорение + прыжок вверх
+      const accel = animateOver(params.accelDuration, t => {
+        spinSpeed = lerp(params.baseSpeed, params.boostSpeed, easeOutQuad(t));
+      }, token);
+
+      const jumpUp = animateOver(params.jumpDuration / 2, t => {
+        const y = -params.jumpHeight * Math.sin(t * Math.PI / 2);
+        coinWrap.style.transform = `translateY(${y}px)`;
+      }, token);
+
+      await Promise.all([accel, jumpUp]);
+
+      // вниз
+      await animateOver(params.jumpDuration / 2, t => {
+        const y = -params.jumpHeight * Math.cos(t * Math.PI / 2);
+        coinWrap.style.transform = `translateY(${y}px)`;
+      }, token);
+
+      // амортизация
+      await animateOver(0.2, t => {
+        const eased = Math.sin(t * Math.PI);
+        coinWrap.style.transform = `translateY(${eased * params.landingDepth}px)`;
+      }, token);
+      coinWrap.style.transform = "translateY(0)";
+
+      // фаза быстрого кручения
+      await wait(params.spinDuration, token);
+
+      // замедление
+      await animateOver(params.slowDuration, t => {
+        const eased = 1 - easeOutCubic(t);
+        spinSpeed = params.boostSpeed * eased;
+      }, token);
+      spinSpeed = 0;
+
+      // выпадение
+      const heads = Math.random() < params.headsChance;
+      const target = heads ? 0 : Math.PI;
+      const startAngle = angle % twoPI;
+
+      await animateOver(0.4, t => {
+        angle = lerpAngleRad(startAngle, target, easeOutQuad(t));
+      }, token);
+
+      // пауза
+      await wait(params.pauseDuration, token);
+
+      // возврат к базовой
+      await animateOver(0.5, t => {
+        spinSpeed = params.baseSpeed * t;
+      }, token);
+      spinSpeed = params.baseSpeed;
+
+      if (token.cancelled) return;
+    }
+
+    // ======= УТИЛИТЫ =======
+    function animateOver(duration, cb, token) {
+      return new Promise(resolve => {
+        const start = performance.now();
+        function frame(now) {
+          if (token.cancelled) return resolve();
+          let t = (now - start) / (duration * 1000);
+          if (t > 1) t = 1;
+          cb(t);
+          if (t < 1) requestAnimationFrame(frame);
+          else resolve();
+        }
+        requestAnimationFrame(frame);
+      });
+    }
+
+    function wait(sec, token) {
+      return new Promise(resolve => {
+        const end = performance.now() + sec * 1000;
+        function check(now) {
+          if (token.cancelled) return resolve();
+          if (now < end) requestAnimationFrame(check);
+          else resolve();
+        }
+        requestAnimationFrame(check);
+      });
+    }
+
+    function easeOutCubic(x) { return 1 - Math.pow(1 - x, 3); }
+    function easeOutQuad(x) { return 1 - (1 - x) * (1 - x); }
+    function lerp(a,b,t) { return a + (b - a) * t; }
+
+    function lerpAngleRad(a, b, t) {
+      let diff = (b - a + twoPI) % twoPI;
+      if (diff > Math.PI) diff -= Math.PI;
+      return a + diff * t;
+    }
+  </script>
+</body>
+</html>
