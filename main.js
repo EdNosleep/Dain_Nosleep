@@ -11,10 +11,10 @@
 import { core } from './core.js';
 import { registerCoinModule } from './coin.js';
 import { startInspector } from './inspector.js';
-import { registerCoinEffectsModule } from './modules/coin/coinEffects.js'; // как и раньше
-import { registerCoinEffectNeonModule } from './modules/coin/coinEffectNeon.js'; // как и раньше
-import { registerCoinEffectRingModule } from './modules/coin/coinEffectRing.js'; // как и раньше
-import { registerDebugDomModule } from './debugDom.js'; // как и раньше
+//import { registerCoinEffectsModule } from './modules/coin/coinEffects.js'; // как и раньше
+//import { registerCoinEffectNeonModule } from './modules/coin/coinEffectNeon.js'; // как и раньше
+//import { registerCoinEffectRingModule } from './modules/coin/coinEffectRing.js'; // как и раньше
+//import { registerDebugDomModule } from './debugDom.js'; // как и раньше
 
 
 // ====== НАСТРОЙКА СЦЕНЫ ======
@@ -56,11 +56,11 @@ core.init({
 
 // ====== РЕГИСТРАЦИЯ МОДУЛЕЙ ======
 registerCoinModule(core);
-registerCoinEffectsModule(core);
+//registerCoinEffectsModule(core);
 //registerCoinEffectsPremModule(core);
-registerCoinEffectNeonModule(core);
-registerCoinEffectRingModule(core);
-registerDebugDomModule(core);
+//registerCoinEffectNeonModule(core);
+//registerCoinEffectRingModule(core);
+//registerDebugDomModule(core);
 
 // Здесь же будут:
 // registerTrayModule(core);
