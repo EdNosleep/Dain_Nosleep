@@ -9,7 +9,7 @@
 // ===============================
 
 import { core } from './core.js';
-import { registerCoinModule } from './coin.js';
+//import { registerCoinModule } from './coin.js';
 import { startInspector } from './inspector.js';
 //import { registerCoinEffectsModule } from './modules/coin/coinEffects.js'; // как и раньше
 //import { registerCoinEffectNeonModule } from './modules/coin/coinEffectNeon.js'; // как и раньше
@@ -55,7 +55,7 @@ core.init({
 });
 
 // ====== РЕГИСТРАЦИЯ МОДУЛЕЙ ======
-registerCoinModule(core);
+//registerCoinModule(core);
 //registerCoinEffectsModule(core);
 //registerCoinEffectsPremModule(core);
 //registerCoinEffectNeonModule(core);
@@ -69,7 +69,7 @@ registerCoinModule(core);
 // ...
 
 // ====== СТАРТОВЫЕ МОДУЛИ ======
-core.enableModule('__coinModule');
+//core.enableModule('__coinModule');
 // core.enableModule('__coinEffectsModule');
 
 // ====== ИНСПЕКТОР ======
