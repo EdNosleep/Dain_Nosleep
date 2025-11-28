@@ -98,7 +98,7 @@ export const coinInspector = {
     min: 0,
     max: 40,
     step: 1,
-    value: 5,
+    value: 18,
     param: "pressScale",
     type: "slider"
   },
