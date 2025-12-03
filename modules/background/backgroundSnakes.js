@@ -36,7 +36,7 @@ export const backgroundSnakesInspector = {
 
   "Цвет линии": {
     type: "color",
-    value: "#000000",
+    value: "#ed5700",
     param: "color"
   },
 
@@ -45,7 +45,7 @@ export const backgroundSnakesInspector = {
     min: 1,
     max: 50,
     step: 1,
-    value: 20,
+    value: 40,
     param: "count"
   },
 
