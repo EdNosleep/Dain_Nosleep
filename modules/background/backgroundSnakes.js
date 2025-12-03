@@ -24,7 +24,7 @@ import { defineModule } from "../../moduleFactory.js";
 export const backgroundSnakesInspector = {
   "Фон: прозрачный (вкл)": {
     type: "toggle",
-    value: false,
+    value: true,
     param: "bgTransparent"
   },
 
@@ -36,7 +36,7 @@ export const backgroundSnakesInspector = {
 
   "Цвет линии": {
     type: "color",
-    value: "#ff00ff",
+    value: "#000000",
     param: "color"
   },
 
