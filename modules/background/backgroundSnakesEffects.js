@@ -27,7 +27,7 @@ export const backgroundSnakesEffectsInspector = {
 
   "Вспышка неона (вкл)": {
     type: "toggle",
-    value: true,
+    value: false,
     param: "flashEnabled"
   },
 
@@ -37,7 +37,7 @@ export const backgroundSnakesEffectsInspector = {
     min: 0,
     max: 200,
     step: 5,
-    value: 25,
+    value: 15,
     param: "flashOpacity"
   },
 
