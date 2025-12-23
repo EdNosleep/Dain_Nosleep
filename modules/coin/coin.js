@@ -65,7 +65,7 @@ export const coinInspector = {
     min: 800,
     max: 2400,
     step: 50,
-    value: 1600,
+    value: 1180,
     param: "boostSpeed",
     type: "slider"
   },
