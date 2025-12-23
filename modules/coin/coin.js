@@ -216,9 +216,9 @@ export const registerCoinModule = defineModule({
     state.motion = motion;
 
     // === СЛОИ МОНЕТЫ ===
-    state.obv = createSide("./assets/coin/coin_avers.png");
-    state.rev = createSide("./assets/coin/coin_revers.png");
-    state.edge = createSide("./assets/coin/coin_edge.png");
+    state.obv = createSide("./assets/coin/coin8/coin_avers.png");
+    state.rev = createSide("./assets/coin/coin8/coin_revers.png");
+    state.edge = createSide("./assets/coin/coin8/coin_edge.png");
     motion.append(state.obv, state.rev, state.edge);
 
     // === ЭФФЕКТ НАЖАТИЯ (SCALE) ===
