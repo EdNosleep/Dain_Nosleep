@@ -7,7 +7,7 @@ import { defineTrayButton } from "./defineTrayButton.js";
 import { itemCatalog } from "../../gameplay/data/itemCatalog.js";
 import { primitiveCatalog } from "../../entity/data/primitiveCatalog.js";
 
-const ICON_PATH = "../../assets/tray/trayButtons1/trayIconInventory.png";
+const ICON_PATH = new URL("../../assets/tray/trayButtons1/trayIconInventory.png", import.meta.url).href;
 
 export const registerTrayButtonInventoryModule = defineTrayButton({
   key: "__trayButtonInventoryModule",
