@@ -46,9 +46,11 @@ const DEFAULT_ENABLED_MODULES = [
 //   "__testWebmModule",
 
   "__entityEditorLogicModule",
-  "__entityStage3DModule",
-  "__entityToolbarModule",
+//  "__entityStage3DModule",
+//  "__entityToolbarModule",
 
+  "__testShooterCameraModule",
+  
   "__trayModule",
   "__trayPanelModule",
 
@@ -76,7 +78,7 @@ const MODULE_BOOT_ORDER = [
   "__entityStage3DModule",
   "__entityToolbarModule",
 
-//  "__testShooterCameraModule",
+  "__testShooterCameraModule",
 
   "__trayModule",
   "__trayPanelModule",
