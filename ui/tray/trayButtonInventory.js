@@ -20,7 +20,7 @@ export const registerTrayButtonInventoryModule = defineTrayButton({
   preferImg: false,
 
   inspector: {
-    "Размер ячейки (px)": { param: "cellSize", type: "range", min: 48, max: 120, step: 2, value: 72 },
+    "Размер ячейки (px)": { param: "cellSize", type: "range", min: 48, max: 120, step: 2, value: 60 },
     "Ячеек в ряду": { param: "cellsPerRow", type: "range", min: 3, max: 8, step: 1, value: 5 },
     "Отступ между ячейками": { param: "cellGap", type: "range", min: 4, max: 20, step: 1, value: 10 },
     "Скругление ячейки": { param: "cellRadius", type: "range", min: 6, max: 24, step: 1, value: 14 },
