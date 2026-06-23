@@ -6,7 +6,7 @@ import { defineModule } from "../../engine/moduleFactory.js";
 
 export const backgroundSnakesInspector = {
   "Фон: прозрачный (вкл)": { type: "toggle", value: false, param: "bgTransparent" },
-  "Цвет фона": { type: "color", value: "#c90000", param: "bgColor" },
+  "Цвет фона": { type: "color", value: "#ffffff", param: "bgColor" },
   "Цвет линии": { type: "color", value: "#000000", param: "color" },
 
   "Количество лучей": { type: "slider", min: 1, max: 200, step: 1, value: 80, param: "count" },
