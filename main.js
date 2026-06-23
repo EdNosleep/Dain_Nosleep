@@ -47,7 +47,7 @@ const DEFAULT_ENABLED_MODULES = [
 
   "__entityEditorLogicModule",
 //  "__entityStage3DModule",
-//  "__entityToolbarModule",
+  "__entityToolbarModule",
 
   "__testShooterCameraModule",
   
