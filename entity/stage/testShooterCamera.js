@@ -80,7 +80,7 @@ export const registerTestShooterCameraModule = defineModule({
       min: 20,
       max: 80,
       step: 1,
-      value: 50
+      value: 25
     },
     "Джойстик Y": {
       param: "joystickY",
