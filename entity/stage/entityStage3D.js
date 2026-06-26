@@ -63,7 +63,7 @@ export const registerEntityStage3DModule = defineModule({
     },
 
     "Environment включён": { param: "environmentEnabled", type: "toggle", value: true },
-    "Mobile Safe": { param: "environmentMobileSafe", type: "toggle", value: true },
+    "Mobile Safe": { param: "environmentMobileSafe", type: "toggle", value: false },
 
     "Цвет змей": { param: "environmentLineColor", type: "color", value: "#000000" },
     "Яркость змей": {
@@ -91,7 +91,7 @@ export const registerEntityStage3DModule = defineModule({
       min: 1,
       max: 140,
       step: 1,
-      value: 42
+      value: 90
     },
     "Мин. скорость змей": {
       param: "environmentSnakeMinSpeed",
