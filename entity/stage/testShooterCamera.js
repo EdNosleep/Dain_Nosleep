@@ -45,7 +45,7 @@ export const registerTestShooterCameraModule = defineModule({
     "Интенсивность света": { param: "lightIntensity", type: "range", min: 0.3, max: 2, step: 0.05, value: 1.15 },
 
     "Джойстик X": { param: "joystickX", type: "range", min: 20, max: 80, step: 1, value: 25 },
-    "Джойстик Y": { param: "joystickY", type: "range", min: 55, max: 92, step: 1, value: 80 },
+    "Джойстик Y": { param: "joystickY", type: "range", min: 55, max: 92, step: 1, value: 60 },
     "Скорость движения": { param: "moveSpeed", type: "range", min: 0.2, max: 12, step: 0.1, value: 5 },
     "Высота камеры": { param: "cameraHeight", type: "range", min: 0.4, max: 4, step: 0.05, value: 1.65 },
     "Макс. дистанция от центра": { param: "maxMoveDistance", type: "range", min: 2, max: 80, step: 1, value: 24 },
