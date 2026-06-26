@@ -9,9 +9,6 @@ import { registerSaveManagerModule } from "./meta/saveManager.js";
 import { registerInspectorModule } from "./meta/inspector.js";
 import { registerInspectorColorPresetsModule } from "./meta/inspectorColorPresets.js";
 
-import { registerBackgroundSnakesModule } from "./visual/background/backgroundSnakes.js";
-import { registerBackgroundSnakesEffectsModule } from "./visual/background/backgroundSnakesEffects.js";
-
 import { registerCoinModule } from "./gameplay/coin/coin.js";
 import { registerTestWebmModule } from "./test/testWebm.js";
 
@@ -39,9 +36,6 @@ const DEFAULT_ENABLED_MODULES = [
   "__inspectorModule",
   "__inspectorColorPresetsModule",
 
-//  "__backgroundSnakesModule",
-//  "__backgroundSnakesEffectsModule",
-
 //   "__coinModule",
 //   "__testWebmModule",
 
@@ -65,9 +59,6 @@ const MODULE_BOOT_ORDER = [
   "__saveManagerModule",
   "__inspectorModule",
   "__inspectorColorPresetsModule",
-
-  "__backgroundSnakesModule",
-  "__backgroundSnakesEffectsModule",
 
   "__coinModule",
   "__testWebmModule",
@@ -135,9 +126,6 @@ setBootProgress(8, "Регистрация модулей…");
 registerSaveManagerModule(core);
 registerInspectorModule(core);
 registerInspectorColorPresetsModule(core);
-
-registerBackgroundSnakesModule(core);
-registerBackgroundSnakesEffectsModule(core);
 
 registerCoinModule(core);
 registerTestWebmModule(core);
