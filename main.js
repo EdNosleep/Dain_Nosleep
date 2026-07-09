@@ -15,13 +15,13 @@ import { registerConcentricPulseTestButtonModule } from "./visualEngine/helpers/
 //import { registerCoinModule } from "./gameplay/coin/coin.js";
 //import { registerTestWebmModule } from "./test/testWebm.js";
 
-//import { registerTrayModule } from "./ui/tray/tray.js";
-//import { registerTrayPanelModule } from "./ui/tray/trayPanel.js";
-//import { registerTrayButtonAbilitiesModule } from "./ui/tray/buttonAbilities.js";
-//import { registerTrayButton1Module } from "./ui/tray/trayButton1.js";
-//import { registerTrayButtonInventoryModule } from "./ui/tray/trayButtonInventory.js";
-//import { registerTrayButton3Module } from "./ui/tray/trayButton3.js";
-//import { registerConsoleModule } from "./ui/dev/console.js";
+import { registerTrayModule } from "./ui/tray/tray.js";
+import { registerTrayPanelModule } from "./ui/tray/trayPanel.js";
+import { registerTrayButtonAbilitiesModule } from "./ui/tray/buttonAbilities.js";
+import { registerTrayButton1Module } from "./ui/tray/trayButton1.js";
+import { registerTrayButtonInventoryModule } from "./ui/tray/trayButtonInventory.js";
+import { registerTrayButton3Module } from "./ui/tray/trayButton3.js";
+import { registerConsoleModule } from "./ui/dev/console.js";
 
 //import { registerEntityEditorLogicModule } from "./entity/logic/entityEditorLogic.js";
 //import { registerEntityFocusControllerModule } from "./entity/focus/entityFocusController.js";
@@ -32,7 +32,7 @@ import { registerConcentricPulseTestButtonModule } from "./visualEngine/helpers/
 //import { registerGizmoInfoPanelModule } from "./entity/gizmo/ui/gizmoInfoPanel.js";
 //import { registerEntityToolbarModule } from "./entity/ui/entityToolbar.js";
 
-//import { registerTestShooterCameraModule } from "./entity/stage/testShooterCamera.js";
+import { registerTestShooterCameraModule } from "./entity/stage/testShooterCamera.js";
 
 import { playerDefaults } from "./gameplay/player/playerDefaults.js";
 import { registerEquipmentLogicModule } from "./gameplay/player/equipmentLogic.js";
@@ -77,7 +77,7 @@ const MODULE_BOOT_ORDER = [
   "__visualEngineModule",
   "__concentricPulseTestButtonModule",
 
- // "__coinModule",
+//  "__coinModule",
 //  "__testWebmModule",
 
 //  "__entityEditorLogicModule",
@@ -89,7 +89,7 @@ const MODULE_BOOT_ORDER = [
 //  "__gizmoInfoPanelModule",
 //  "__entityToolbarModule",
 
-//  "__testShooterCameraModule",
+  "__testShooterCameraModule",
 
   "__trayModule",
   "__trayPanelModule",
@@ -163,7 +163,7 @@ registerConcentricPulseTestButtonModule(core);
 //registerGizmoInfoPanelModule(core);
 //registerEntityToolbarModule(core);
 
-//registerTestShooterCameraModule(core);
+registerTestShooterCameraModule(core);
 
 registerTrayModule(core);
 registerTrayPanelModule(core);
