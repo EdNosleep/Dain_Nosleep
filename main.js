@@ -23,10 +23,10 @@ import { registerTrayButtonInventoryModule } from "./ui/tray/trayButtonInventory
 import { registerTrayButton3Module } from "./ui/tray/trayButton3.js";
 import { registerConsoleModule } from "./ui/dev/console.js";
 
-//import { registerEntityEditorLogicModule } from "./entity/logic/entityEditorLogic.js";
+import { registerEntityEditorLogicModule } from "./entity/logic/entityEditorLogic.js";
 //import { registerEntityFocusControllerModule } from "./entity/focus/entityFocusController.js";
 //import { registerGizmoStateControllerModule } from "./entity/gizmo/gizmoStateController.js";
-//import { registerEntityStage3DModule } from "./entity/stage/entityStage3D.js";
+import { registerEntityStage3DModule } from "./entity/stage/entityStage3D.js";
 //import { registerInteractionGizmoModule } from "./entity/gizmo/interactionGizmo.js";
 //import { registerGizmoToolDockModule } from "./entity/gizmo/ui/gizmoToolDock.js";
 //import { registerGizmoInfoPanelModule } from "./entity/gizmo/ui/gizmoInfoPanel.js";
@@ -49,8 +49,8 @@ const DEFAULT_ENABLED_MODULES = [
 //   "__coinModule",
 //   "__testWebmModule",
 
-//  "__entityEditorLogicModule",
-//  "__entityStage3DModule",
+  "__entityEditorLogicModule",
+  "__entityStage3DModule",
 //  "__entityFocusControllerModule",
 //  "__gizmoStateControllerModule",
 //  "__interactionGizmoModule",
@@ -80,8 +80,8 @@ const MODULE_BOOT_ORDER = [
   "__coinModule",
   "__testWebmModule",
 
-//  "__entityEditorLogicModule",
-//  "__entityStage3DModule",
+  "__entityEditorLogicModule",
+  "__entityStage3DModule",
 //  "__entityFocusControllerModule",
 //  "__gizmoStateControllerModule",
 //  "__interactionGizmoModule",
@@ -154,8 +154,8 @@ registerConcentricPulseTestButtonModule(core);
 registerCoinModule(core);
 registerTestWebmModule(core);
 
-//registerEntityEditorLogicModule(core);
-//registerEntityStage3DModule(core);
+registerEntityEditorLogicModule(core);
+registerEntityStage3DModule(core);
 //registerEntityFocusControllerModule(core);
 //registerGizmoStateControllerModule(core);
 //registerInteractionGizmoModule(core);
