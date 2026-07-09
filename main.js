@@ -12,7 +12,7 @@ import { registerInspectorColorPresetsModule } from "./meta/inspectorColorPreset
 import { registerVisualEngineModule } from "./visualEngine/visualEngine.js";
 import { registerConcentricPulseTestButtonModule } from "./visualEngine/helpers/concentricPulseTestButton.js";
 
-import { registerCoinModule } from "./gameplay/coin/coin.js";
+//import { registerCoinModule } from "./gameplay/coin/coin.js";
 import { registerTestWebmModule } from "./test/testWebm.js";
 
 import { registerTrayModule } from "./ui/tray/tray.js";
@@ -77,7 +77,7 @@ const MODULE_BOOT_ORDER = [
   "__visualEngineModule",
   "__concentricPulseTestButtonModule",
 
-  "__coinModule",
+ // "__coinModule",
   "__testWebmModule",
 
   "__entityEditorLogicModule",
@@ -151,7 +151,7 @@ registerInspectorColorPresetsModule(core);
 registerVisualEngineModule(core);
 registerConcentricPulseTestButtonModule(core);
 
-registerCoinModule(core);
+//registerCoinModule(core);
 registerTestWebmModule(core);
 
 registerEntityEditorLogicModule(core);
