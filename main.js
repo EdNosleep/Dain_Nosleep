@@ -9,11 +9,11 @@ import { registerSaveManagerModule } from "./meta/saveManager.js";
 import { registerInspectorModule } from "./meta/inspector.js";
 import { registerInspectorColorPresetsModule } from "./meta/inspectorColorPresets.js";
 
-import { registerVisualEngineModule } from "./visualEngine/visualEngine.js";
-import { registerConcentricPulseTestButtonModule } from "./visualEngine/helpers/concentricPulseTestButton.js";
+//import { registerVisualEngineModule } from "./visualEngine/visualEngine.js";
+//import { registerConcentricPulseTestButtonModule } from "./visualEngine/helpers/concentricPulseTestButton.js";
 
 //import { registerCoinModule } from "./gameplay/coin/coin.js";
-import { registerTestWebmModule } from "./test/testWebm.js";
+//import { registerTestWebmModule } from "./test/testWebm.js";
 
 import { registerTrayModule } from "./ui/tray/tray.js";
 import { registerTrayPanelModule } from "./ui/tray/trayPanel.js";
@@ -23,16 +23,16 @@ import { registerTrayButtonInventoryModule } from "./ui/tray/trayButtonInventory
 import { registerTrayButton3Module } from "./ui/tray/trayButton3.js";
 import { registerConsoleModule } from "./ui/dev/console.js";
 
-import { registerEntityEditorLogicModule } from "./entity/logic/entityEditorLogic.js";
-import { registerEntityFocusControllerModule } from "./entity/focus/entityFocusController.js";
-import { registerGizmoStateControllerModule } from "./entity/gizmo/gizmoStateController.js";
-import { registerEntityStage3DModule } from "./entity/stage/entityStage3D.js";
-import { registerInteractionGizmoModule } from "./entity/gizmo/interactionGizmo.js";
-import { registerGizmoToolDockModule } from "./entity/gizmo/ui/gizmoToolDock.js";
-import { registerGizmoInfoPanelModule } from "./entity/gizmo/ui/gizmoInfoPanel.js";
-import { registerEntityToolbarModule } from "./entity/ui/entityToolbar.js";
+//import { registerEntityEditorLogicModule } from "./entity/logic/entityEditorLogic.js";
+//import { registerEntityFocusControllerModule } from "./entity/focus/entityFocusController.js";
+//import { registerGizmoStateControllerModule } from "./entity/gizmo/gizmoStateController.js";
+//import { registerEntityStage3DModule } from "./entity/stage/entityStage3D.js";
+//import { registerInteractionGizmoModule } from "./entity/gizmo/interactionGizmo.js";
+//import { registerGizmoToolDockModule } from "./entity/gizmo/ui/gizmoToolDock.js";
+//import { registerGizmoInfoPanelModule } from "./entity/gizmo/ui/gizmoInfoPanel.js";
+//import { registerEntityToolbarModule } from "./entity/ui/entityToolbar.js";
 
-import { registerTestShooterCameraModule } from "./entity/stage/testShooterCamera.js";
+//import { registerTestShooterCameraModule } from "./entity/stage/testShooterCamera.js";
 
 import { playerDefaults } from "./gameplay/player/playerDefaults.js";
 import { registerEquipmentLogicModule } from "./gameplay/player/equipmentLogic.js";
@@ -43,20 +43,20 @@ const DEFAULT_ENABLED_MODULES = [
   "__saveManagerModule",
   "__inspectorModule",
   "__inspectorColorPresetsModule",
-  "__visualEngineModule",
-  "__concentricPulseTestButtonModule",
+//  "__visualEngineModule",
+//  "__concentricPulseTestButtonModule",
 
 //   "__coinModule",
 //   "__testWebmModule",
 
-  "__entityEditorLogicModule",
-  "__entityStage3DModule",
-  "__entityFocusControllerModule",
-  "__gizmoStateControllerModule",
-  "__interactionGizmoModule",
-  "__gizmoToolDockModule",
-  "__gizmoInfoPanelModule",
-  "__entityToolbarModule",
+//  "__entityEditorLogicModule",
+//  "__entityStage3DModule",
+//  "__entityFocusControllerModule",
+//  "__gizmoStateControllerModule",
+//  "__interactionGizmoModule",
+//  "__gizmoToolDockModule",
+//  "__gizmoInfoPanelModule",
+//  "__entityToolbarModule",
 
   "__trayModule",
   "__trayPanelModule",
@@ -74,20 +74,20 @@ const MODULE_BOOT_ORDER = [
   "__saveManagerModule",
   "__inspectorModule",
   "__inspectorColorPresetsModule",
-  "__visualEngineModule",
-  "__concentricPulseTestButtonModule",
+//  "__visualEngineModule",
+//  "__concentricPulseTestButtonModule",
 
  // "__coinModule",
-  "__testWebmModule",
+//  "__testWebmModule",
 
-  "__entityEditorLogicModule",
-  "__entityStage3DModule",
-  "__entityFocusControllerModule",
-  "__gizmoStateControllerModule",
-  "__interactionGizmoModule",
-  "__gizmoToolDockModule",
-  "__gizmoInfoPanelModule",
-  "__entityToolbarModule",
+//  "__entityEditorLogicModule",
+//  "__entityStage3DModule",
+//  "__entityFocusControllerModule",
+//  "__gizmoStateControllerModule",
+//  "__interactionGizmoModule",
+//  "__gizmoToolDockModule",
+//  "__gizmoInfoPanelModule",
+//  "__entityToolbarModule",
 
 //  "__testShooterCameraModule",
 
@@ -148,22 +148,22 @@ setBootProgress(8, "Регистрация модулей…");
 registerSaveManagerModule(core);
 registerInspectorModule(core);
 registerInspectorColorPresetsModule(core);
-registerVisualEngineModule(core);
-registerConcentricPulseTestButtonModule(core);
+//registerVisualEngineModule(core);
+//registerConcentricPulseTestButtonModule(core);
 
 //registerCoinModule(core);
-registerTestWebmModule(core);
+//registerTestWebmModule(core);
 
-registerEntityEditorLogicModule(core);
-registerEntityStage3DModule(core);
-registerEntityFocusControllerModule(core);
-registerGizmoStateControllerModule(core);
-registerInteractionGizmoModule(core);
-registerGizmoToolDockModule(core);
-registerGizmoInfoPanelModule(core);
-registerEntityToolbarModule(core);
+//registerEntityEditorLogicModule(core);
+//registerEntityStage3DModule(core);
+//registerEntityFocusControllerModule(core);
+//registerGizmoStateControllerModule(core);
+//registerInteractionGizmoModule(core);
+//registerGizmoToolDockModule(core);
+//registerGizmoInfoPanelModule(core);
+//registerEntityToolbarModule(core);
 
-registerTestShooterCameraModule(core);
+//registerTestShooterCameraModule(core);
 
 registerTrayModule(core);
 registerTrayPanelModule(core);
