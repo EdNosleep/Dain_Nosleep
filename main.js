@@ -58,6 +58,8 @@ const DEFAULT_ENABLED_MODULES = [
 //  "__gizmoInfoPanelModule",
   "__entityToolbarModule",
 
+//"__testShooterCameraModule",
+  
   "__trayModule",
   "__trayPanelModule",
 
